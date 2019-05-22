@@ -1,0 +1,12 @@
+//A "clearfix" mixin to be used with floated elements
+@mixin clearfix {
+    //Append a pseudoelement after the element to clear any floats
+    &::after {
+        //pseudo-elements require a content property
+        content: "";
+        //standard display property for a clearfix
+        display: table;
+        //clear both left and right floats
+        clear: both;
+    }
+}

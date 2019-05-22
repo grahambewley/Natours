@@ -1,0 +1,21 @@
+*, 
+*::after,
+*::before {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: inherit; /* by using inherit here, all elements will inherit from the border-box set on body (which is border-box) */
+}
+
+/*
+    html:
+    We want to use 10px as our font-size so that it is easy to calculate rem values later on.
+    But, if we set font-size here using pixels, it will not allow users to set their own browser default font sizes.
+    Default browser font size is 16px, so we're starting with 10/16 or 62.5%.
+*/
+html {
+    font-size: 62.5%;
+}
+
+body {
+    box-sizing: border-box; /* border-box means borders and padding are not calculated into total size of elements */
+}
