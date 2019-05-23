@@ -1,6 +1,5 @@
 .row {
     max-width: $grid-width;
-    background-color: #eee;
     margin: 0 auto;
 
     //Makes it so all but the last row have a gutter underneath
@@ -14,7 +13,6 @@
     //Using ^= operand with the attribute selector
     //Here we're selecting all elements within .row where the class attribute STARTS WITH "col-"
     [class^="col-"] {
-        background-color: orangered;
         float: left;
         
         //Make it so all but the last column have a horizontal gutter
