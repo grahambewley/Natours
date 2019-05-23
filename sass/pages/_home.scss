@@ -28,12 +28,12 @@
         transform: translate(-50%, -50%);
         text-align: center;
     }
-
 }
 
 .section-about {
     background-color: $color-grey-light-1;
     padding: 25rem 0;
+    //This slides the section up so that it overlaps with the "clipped" div above it
     margin-top: -20vh;
 }
 
