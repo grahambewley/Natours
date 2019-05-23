@@ -1,0 +1,63 @@
+.card {
+    //.card and .card__side both need a height because the absolute positioning of .card__side 
+    //"pulls it out" of the layout, which makes .card height = 0
+    height: 50rem;
+    
+    //Set so that child elements (.card__side's) with absolute positioning will "start" at 0,0 of this element
+    position:relative;
+    
+    //Specify how "far" from the user the card is
+    //This value requires some experimentation
+    perspective: 150rem;
+    -moz-perspective: 150rem;
+    
+    &__side {
+        //Set so that both front and back sides of the card are in the same position
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        //Without this, the element will have the width of the text inside
+        width: 100%;
+
+        //Hide the "back side" of the element
+        //Without this, the backside of the card would show on top of the front side
+        backface-visibility: hidden;
+
+        color: #fff;
+        font-size: 2rem;
+        //.card and .card__side both need a height because the absolute positioning of .card__side 
+        //"pulls it out" of the layout, which makes .card height = 0
+        height: 50rem;
+        transition: all .8s ease;
+        border-radius: 3px;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+
+        &--front {
+            background-color: $color-white;
+        }
+
+        &--back {
+            
+            //At natural position, the back of the card is already flipped 180 degrees in the "reverse" direction
+            transform: rotateY(-180deg);
+
+            //Properties of the backside of .card__side-back-1
+            &-1 {
+                background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+            }
+        }
+    }
+
+    //On .card:hover ... animate the .card__side--front so it flips over
+    &:hover &__side--front {
+        //Rotate the card to 180 degrees
+        transform: rotateY(180deg);
+    }
+
+    //On .card:hover ... animate the .card__side--back so it flips over
+    &:hover &__side--back {
+        //Rotate the card to 0 degrees -- effectively "undoing" the -180deg rotation that the card starts with
+        transform: rotateY(0);
+    }
+}
