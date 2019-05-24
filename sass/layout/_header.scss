@@ -8,6 +8,8 @@
     background-size: cover;
     background-position: top; /* This will keep the top of the image at the top of the div, so shrinking the window vertically won't reposition the image */
     position: relative; /* A child of this element is using position:absolute, which requires a parent using position:relative */
+    
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); 
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* Allows you to clip an element's shape down to a specified polygon */
 
     &__logo-box {

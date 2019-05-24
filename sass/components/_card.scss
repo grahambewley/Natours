@@ -24,8 +24,6 @@
         //Without this, the backside of the card would show on top of the front side
         backface-visibility: hidden;
 
-        color: #fff;
-        font-size: 2rem;
         //.card and .card__side both need a height because the absolute positioning of .card__side 
         //"pulls it out" of the layout, which makes .card height = 0
         height: 50rem;
@@ -59,5 +57,78 @@
     &:hover &__side--back {
         //Rotate the card to 0 degrees -- effectively "undoing" the -180deg rotation that the card starts with
         transform: rotateY(0);
+    }
+
+    //******** FRONT SIDE STYLING ********
+    &__picture {
+        background-size: cover;
+        background-blend-mode: screen;
+        //Keep the background image from "overflowing" the card
+        //Without this, the image's sharp corners would show rather than the rounded border radius
+        overflow: hidden;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        
+
+        &--1 {
+            //Moving up one level because this styling will eventually be in the style.css file
+            //From there, the image is found at the ../img/ path
+            background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark),
+            url(../img/nat-5.jpg);
+            height: 23rem;
+        }
+
+        &--2 {
+
+            background-image: url(../img/nat-5.jpg);
+        }
+
+        &--3 {
+
+            background-image: url(../img/nat-5.jpg);
+        }
+    }
+
+    &__heading {
+        font-size: 2.8rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        text-align: right;
+        color: $color-white;
+        position: absolute;
+        top: 12rem;
+        right: 2rem;
+        width: 75%;
+    }
+
+    &__heading-span {
+        padding: 1rem 1.5rem;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+        &--1 {
+            background-image: linear-gradient(to right bottom, 
+                rgba($color-secondary-light, .85), 
+                rgba($color-secondary-dark, .85));
+        }
+    }
+
+    &__details {
+        padding: 3rem;
+        
+        ul {
+            list-style: none;
+            width: 80%;
+            margin: 0 auto;
+
+            li {
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 1rem;
+                
+                &:not(:last-child) {
+                    border-bottom: 1px solid $color-grey-light-2;
+                }
+            }
+        }
     }
 }
