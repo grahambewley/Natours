@@ -1,0 +1,30 @@
+.story {
+    width: 75%;
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba($color-black, .1);
+
+    background-color: $color-white;
+    border-radius: 3px;
+    padding: 6rem;
+    //Extra 3rem of padding on the left to accomodate the translateX -3rem that we're going to do on the circle shape below
+    padding-left: 9rem;
+
+    font-size: $default-font-size;
+
+    &__shape {
+        width: 15rem;
+        height: 15rem;
+        background-color: orangered;
+        float: left;
+        //This property, paired with the float, specifies the "outer edge" of the shape
+        //meaning the text to the right of this shape will wrap around the circular shape-outside
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%);
+        //Now we clip the shape itself down to the circle shape
+        -webkit-clip-path: circle(50% at 50% 50%);
+        clip-path: circle(50% at 50% 50%);
+
+        //Don't use margin on floated objects, use transform translate instead
+        transform: translateX(-3rem);
+    }
+}
