@@ -20,6 +20,10 @@
         //Without this, the element will have the width of the text inside
         width: 100%;
 
+        //Keep the background image from "overflowing" the card 
+        //Without this, the image's sharp corners would show rather than the rounded border radius
+        overflow: hidden;
+
         //Hide the "back side" of the element
         //Without this, the backside of the card would show on top of the front side
         backface-visibility: hidden;
@@ -73,9 +77,6 @@
     &__picture {
         background-size: cover;
         background-blend-mode: screen;
-        //Keep the background image from "overflowing" the card
-        //Without this, the image's sharp corners would show rather than the rounded border radius
-        overflow: hidden;
         -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
         clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
         
