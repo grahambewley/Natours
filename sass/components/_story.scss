@@ -1,20 +1,22 @@
 .story {
     width: 75%;
     margin: 0 auto;
-    box-shadow: 0 3rem 6rem rgba($color-black, .1);
-
-    background-color: $color-white;
-    border-radius: 3px;
     padding: 6rem;
     //Extra 3rem of padding on the left to accomodate the translateX -3rem that we're going to do on the circle shape below
     padding-left: 9rem;
 
+    box-shadow: 0 3rem 6rem rgba($color-black, .1);
+    background-color: rgba($color-white, .6); 
+    border-radius: 3px;
+
     font-size: $default-font-size;
 
+    transform: skewX(-12deg);
+
     &__shape {
+        position: relative;
         width: 15rem;
         height: 15rem;
-        background-color: orangered;
         float: left;
         //This property, paired with the float, specifies the "outer edge" of the shape
         //meaning the text to the right of this shape will wrap around the circular shape-outside
@@ -25,6 +27,45 @@
         clip-path: circle(50% at 50% 50%);
 
         //Don't use margin on floated objects, use transform translate instead
-        transform: translateX(-3rem);
+        transform: skewX(12deg) translateX(-3rem);
+    }
+
+    &__img {
+        height: 100%;
+        transform: translateX(-4rem) scale(1.4);
+        transition: all .5s;
+    }
+
+    &__text {
+        transform: skewX(12deg);
+    }
+
+    &__caption {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        //Initial state puts the caption "down" and opacity set to 0
+        transform: translate(-50%, 20%);
+        opacity: 0;
+        color: white;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: center;
+        transition: all .5s;
+        //Fixes jitter "glitch" after animation
+        backface-visibility: hidden;
+    }
+
+    //Properties to animate the caption (name) when hovering on a story
+    &:hover &__caption {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+
+    //Properties to animate the image when hovering on a story
+    &:hover &__img {
+        transform: translate(-4rem) scale(1);
+        filter: blur(3px) brightness(80%);
     }
 }
