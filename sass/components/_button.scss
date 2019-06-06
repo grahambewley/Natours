@@ -1,4 +1,5 @@
 .btn {
+    &,
     &:link,
     &:visited {
         text-transform: uppercase;
@@ -10,6 +11,11 @@
         position: relative;
         
         transition: all 0.2s;
+
+        //Styling for the <button> element
+        //Requires the empty & selector above, since a <button> does not have a :link or :visited state
+        border: none;
+        cursor: pointer;
     }
 
     &:hover {
@@ -22,9 +28,14 @@
         }
     }
 
-    &:active {
+    &:active,
+    &:focus {
         transform: translateY(-1px);
         box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+
+        //Styling for the <button> element
+        //Requires the &:focus selector above
+        outline: none;
     }
 
     &--white {
