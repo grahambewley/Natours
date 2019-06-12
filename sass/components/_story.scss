@@ -4,14 +4,13 @@
     padding: 6rem;
     //Extra 3rem of padding on the left to accomodate the translateX -3rem that we're going to do on the circle shape below
     padding-left: 9rem;
-
     box-shadow: 0 3rem 6rem rgba($color-black, .1);
     background-color: rgba($color-white, .6); 
     border-radius: 3px;
-
     font-size: $default-font-size;
-
     transform: skewX(-12deg);
+
+    
 
     &__shape {
         position: relative;
