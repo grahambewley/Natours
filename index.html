@@ -337,7 +337,27 @@
 
         <footer class="footer">
             <div class="footer__logo-box">
-                <img src="img/logo-green-2x.png" alt="Full logo" class="footer__logo">
+                
+                <!-- 
+                Responsive Images - Art Direction, Density Switching
+                Use the <picture> tag instead of <img> tag
+                -->
+                <picture class="footer__logo">
+                    <!-- Use the <source> tag with a media property inside to cover small screen sizes -->
+                    <!-- A media property allows you to specify a media query, in this case we copied the "phone" media query -->
+                    <!-- You then specify a srcset -- you can specify multiple images with different "density selectors" -->
+                    <!-- This covers different screen densities (low-res/high-res) -->
+                    <source 
+                        srcset="img/logo-green-small-1x.png 1x, img/logo-green-small-2x.png 2x" 
+                        media="(max-width: 37.5em)">
+                    
+                        <!-- Fall back to the default logo image for images that do not fit the media query above -->
+                        <!-- (i.e. anything that's not a phone) -->
+                        <!-- Again, we're using Density Switching -->
+                    <img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="Full logo" class="footer__logo">
+                </picture>
+                
+                
             </div>
 
             <div class="row">
