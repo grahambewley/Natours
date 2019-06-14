@@ -17,6 +17,7 @@
         top: 0;
         left: 0;
 
+        
         //Without this, the element will have the width of the text inside
         width: 100%;
 
@@ -182,7 +183,9 @@
         font-weight: 100;
     }
 
-    @include respond(tab-port) {
+    //Custom media query with the tab-port max-width, but also selecting larger devices where hover is not possible (like iPad landscape)
+    @media only screen and (max-width: 56.25em),
+            only screen and (hover: none) {
 
         height: auto;
         border-radius: 3px;
