@@ -26,6 +26,7 @@
 
         //Hide the "back side" of the element
         //Without this, the backside of the card would show on top of the front side
+        -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
 
         //.card and .card__side both need a height because the absolute positioning of .card__side 

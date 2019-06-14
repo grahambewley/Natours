@@ -25,16 +25,25 @@
         width: 15rem;
         height: 15rem;
         float: left;
-        //This property, paired with the float, specifies the "outer edge" of the shape
-        //meaning the text to the right of this shape will wrap around the circular shape-outside
-        -webkit-shape-outside: circle(50% at 50% 50%);
-        shape-outside: circle(50% at 50% 50%);
-        //Now we clip the shape itself down to the circle shape
-        -webkit-clip-path: circle(50% at 50% 50%);
-        clip-path: circle(50% at 50% 50%);
+        border-radius: none;
+        overflow: hidden;
 
         //Don't use margin on floated objects, use transform translate instead
         transform: skewX(12deg) translateX(-3rem);
+
+        
+        @supports (clip-path: polygon(0 0) or -webkit-clip-path(0 0 )) {
+            //Now we clip the shape itself down to the circle shape
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+            
+            //This property, paired with the float, specifies the "outer edge" of the shape
+            //meaning the text to the right of this shape will wrap around the circular shape-outside
+            -webkit-shape-outside: circle(50% at 50% 50%);
+            shape-outside: circle(50% at 50% 50%);
+        
+            border-radius: 50%;
+        }
 
         @include respond(phone) {
             transform: translateX(-3rem) skewX(0);
@@ -68,6 +77,7 @@
         text-align: center;
         transition: all .5s;
         //Fixes jitter "glitch" after animation
+        -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
     }
 

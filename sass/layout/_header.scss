@@ -1,5 +1,5 @@
 .header {
-    height: 95vh; /* vh means viewport height, useful for hero images, etc. */
+    height: 85vh;
     background-image: linear-gradient(
         to right bottom, 
         rgba($color-primary-light,0.8), 
@@ -7,15 +7,20 @@
         url('../img/hero-small.jpg');
     background-size: cover;
     background-position: top; /* This will keep the top of the image at the top of the div, so shrinking the window vertically won't reposition the image */
-    position: relative; /* A child of this element is using position:absolute, which requires a parent using position:relative */
-    
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); 
-    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* Allows you to clip an element's shape down to a specified polygon */
+    position: relative; /* A child of this element is using position:absolute, which requires a parent using position:relative */    
 
+    @supports (clip-path: polygon(0 0) or -webkit-clip-path(0 0 )) {
+        height: 95vh; /* vh means viewport height, useful for hero images, etc. */
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); 
+        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* Allows you to clip an element's shape down to a specified polygon */
+    }
+    
     //Responsive Images
     //Use a min-resolution media query to specify high density screens
     //Use a mid-width
+    //-- throw in -webkit-min-device-pixel-ratio to support Safari
     @media (min-resolution: 192dpi) and (mid-width: 37.5em), 
+            (-webkit-min-device-pixel-ratio: 2) and (mid-width: 37.5em), 
             (min-width: 125em) {
         background-image: linear-gradient(
         to right bottom, 

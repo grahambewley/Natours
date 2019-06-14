@@ -270,6 +270,7 @@ body {
     left: 0;
     width: 100%;
     overflow: hidden;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     height: 52rem;
     transition: all .8s ease;
@@ -546,6 +547,11 @@ body {
   opacity: 0;
   visibility: hidden;
   transition: all .3s; }
+  @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+    .popup {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background-color: rgba(0, 0, 0, 0.3); } }
   .popup__content {
     position: absolute;
     top: 50%;
@@ -652,11 +658,16 @@ body {
     width: 15rem;
     height: 15rem;
     float: left;
-    -webkit-shape-outside: circle(50% at 50% 50%);
-    shape-outside: circle(50% at 50% 50%);
-    -webkit-clip-path: circle(50% at 50% 50%);
-    clip-path: circle(50% at 50% 50%);
+    border-radius: none;
+    overflow: hidden;
     transform: skewX(12deg) translateX(-3rem); }
+    @supports (clip-path: polygon(0 0)) {
+      .story__shape {
+        -webkit-clip-path: circle(50% at 50% 50%);
+        clip-path: circle(50% at 50% 50%);
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%);
+        border-radius: 50%; } }
     @media (max-width: 37.5em) {
       .story__shape {
         transform: translateX(-3rem) skewX(0); } }
@@ -680,6 +691,7 @@ body {
     font-size: 1.7rem;
     text-align: center;
     transition: all .5s;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden; }
   .story:hover .story__caption {
     opacity: 1;
@@ -689,18 +701,21 @@ body {
     filter: blur(3px) brightness(80%); }
 
 .header {
-  height: 95vh;
-  /* vh means viewport height, useful for hero images, etc. */
+  height: 85vh;
   background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero-small.jpg");
   background-size: cover;
   background-position: top;
   /* This will keep the top of the image at the top of the div, so shrinking the window vertically won't reposition the image */
   position: relative;
-  /* A child of this element is using position:absolute, which requires a parent using position:relative */
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  /* Allows you to clip an element's shape down to a specified polygon */ }
-  @media (min-resolution: 192dpi) and (mid-width: 37.5em), (min-width: 125em) {
+  /* A child of this element is using position:absolute, which requires a parent using position:relative */ }
+  @supports (clip-path: polygon(0 0)) {
+    .header {
+      height: 95vh;
+      /* vh means viewport height, useful for hero images, etc. */
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+      /* Allows you to clip an element's shape down to a specified polygon */ } }
+  @media (min-resolution: 192dpi) and (mid-width: 37.5em), (-webkit-min-device-pixel-ratio: 2) and (mid-width: 37.5em), (min-width: 125em) {
     .header {
       background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg"); } }
   @media (max-width: 37.5em) {
